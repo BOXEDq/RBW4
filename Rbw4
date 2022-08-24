@@ -1,0 +1,82 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("BOXED HUB", "Serpent")
+local Tab = Window:NewTab("Main")
+local Section = Tab:NewSection("General")
+
+Section:NewToggle("Aimbot", "ToggleInfo", function(state)
+    if state == false then
+            return
+    end
+    while state do
+        if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("ShotMeterTiming") then
+            for _,v in pairs (workspace[game.Players.LocalPlayer.Name]:GetChildren()) do
+                if v.Name == "ShotMeterTiming" then
+                    if v.Value > aimbotAmount/100 then
+                    local args = {
+                        [1] = "Shoot",
+                        [2] = false
+                    }
+                    game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
+                    break
+                end
+            end
+        end
+        end
+    wait(0.0005)
+    end
+end)
+
+Section:NewSlider("Aimbot Slider", "", 75, 50, function(val)
+    aimbotAmount = val
+end)
+
+local playerTab = Window:NewTab("Lounge")
+local playerModSection = playerTab:NewSection("Lounge")
+local hitbox = workspace[game.Players.LocalPlayer.Name].HitBox
+local contest = workspace[game.Players.LocalPlayer.Name].Pad
+
+function stopAnimation()
+    for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+    v:Stop()
+    end
+end
+
+playerModSection:NewToggle("Reach", "Extend your penis size", function(state)
+    if state then
+        hitbox.Size = Vector3.new(4, 7, 4)
+        return
+    else
+        hitbox.Size = Vector3.new(4, 4, 2.5)
+        return
+    end
+end)
+
+local Tab = Window:NewTab("teleport")
+local Section = Tab:NewSection("um")
+
+Section:NewButton("teleport to rec", "ButtonInfo", function()
+    print("Clicked")
+    game:GetService("ReplicatedStorage").Remotes.Teleport:InvokeServer("Rec")
+end)
+
+Section:NewButton("teleport to park", "ButtonInfo", function()
+    print("Clicked")
+    game:GetService("ReplicatedStorage").Remotes.Teleport:InvokeServer("Park")
+end)
+
+Section:NewButton("teleport to personal gym", "ButtonInfo", function()
+    print("Clicked")
+    game:GetService("ReplicatedStorage").Remotes.Teleport:InvokeServer("Personal Gym")
+end)
+
+Section:NewButton("teleport to plaza", "ButtonInfo", function()
+    print("Clicked")
+    game:GetService("ReplicatedStorage").Remotes.Teleport:InvokeServer("Plaza")
+end)
+
+local settingsTab = Window:NewTab("Settings")
+local settingsSection = settingsTab:NewSection("UI")
+
+settingsSection:NewKeybind("Toggle UI key", "Select key to toggle UI with", Enum.KeyCode.LeftControl, function()
+    Library:ToggleUI()
+end)
