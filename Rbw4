@@ -89,16 +89,6 @@ local args = {
 game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
 end)
 
-Section:NewToggle("ToggleText", "ToggleInfo", function(state)
-    if state == false then
-    local args = {
-    [1] = "Jump"
-}
-
-game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
-end)
-
-
 local settingsTab = Window:NewTab("Settings")
 local settingsSection = settingsTab:NewSection("UI")
 
