@@ -89,11 +89,8 @@ local args = {
 game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
 end)
 
-local Tab = Window:NewTab("AutoBlock")
-local Section = Tab:NewSection("Auto Block")
-
 Section:NewToggle("ToggleText", "ToggleInfo", function(state)
-    if state then
+    if state == false then
     local args = {
     [1] = "Jump"
 }
