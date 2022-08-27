@@ -43,10 +43,10 @@ end
 
 playerModSection:NewToggle("Reach", "Extend your penis size", function(state)
     if state then
-        hitbox.Size = Vector3.new(4, 7, 4)
+        hitbox.Size = Vector3.new(9, 9, 9)
         return
     else
-        hitbox.Size = Vector3.new(4, 4, 2.5)
+        hitbox.Size = Vector3.new(9, 9, 5.5)
         return
     end
 end)
